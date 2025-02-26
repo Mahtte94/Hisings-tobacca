@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -28,18 +29,9 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SaveProductRequest $request)
     {
-        $request->validate([
-            'name' => 'required|max: 100',
-            'description' => 'nullable|max:500',
-            'price' => 'required|decimal: 0,2|min:0',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
-
         $imagePath = $request->file('image')->store('images', 'public');
-
-
 
         Product::create([
             'name' => $request->input('name'),
@@ -58,7 +50,7 @@ class ProductController extends Controller
     {
 
         $product = Product::findOrFail($id);
-        
+
         return view('show', [
             'product' => $product
         ]);
@@ -69,15 +61,17 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('edit', compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(SaveProductRequest $request, Product $product)
     {
-        //
+        $product->update($request->validated());
+
+        return redirect()->route('show', $product);
     }
 
     /**

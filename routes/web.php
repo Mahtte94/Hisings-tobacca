@@ -15,3 +15,9 @@ Route::post('/store', [ProductController::class, 'store'])
 Route::get('/{id}', [ProductController::class, 'show'])
     ->name('show')
     ->where('id', '[0-9]+');
+
+Route::get('/{product}/edit', [ProductController::class, 'edit'])
+    ->name('edit');
+
+Route::patch('{product}', [ProductController::class, 'update'])
+    ->name('update');

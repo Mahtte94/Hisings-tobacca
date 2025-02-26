@@ -33,10 +33,20 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|max: 100',
             'description' => 'nullable|max:500',
-            'price' => 'required|decimal: 0,2|min:0'
+            'price' => 'required|decimal: 0,2|min:0',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-        Product::create($request->input());
+        $imagePath = $request->file('image')->store('images', 'public');
+
+
+
+        Product::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'image' => $imagePath,
+        ]);
 
         return redirect()->route('index');
     }

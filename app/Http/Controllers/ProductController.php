@@ -12,10 +12,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-
         return view('index', [
-            'products' => $products
+            'products' => Product::all()
         ]);
     }
 
@@ -46,10 +44,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
-    {
-        
-    }
+    public function show(Product $product) {}
 
     /**
      * Show the form for editing the specified resource.

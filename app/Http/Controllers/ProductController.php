@@ -88,11 +88,13 @@ class ProductController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'price' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $product->name = $request->input('name');
+        $product->description = $request->input('description');
         $product->price = $request->input('price');
 
         if ($request->hasFile('image')) {

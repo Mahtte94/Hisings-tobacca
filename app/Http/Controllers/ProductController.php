@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SaveProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -40,6 +41,7 @@ class ProductController extends Controller
             'image' => $imagePath,
         ]);
 
+
         return redirect()->route('index');
     }
 
@@ -67,12 +69,35 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SaveProductRequest $request, Product $product)
-    {
-        $product->update($request->validated());
+    public function update(Request $request, $id)
+{
+    $product = Product::findOrFail($id);
+    
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'price' => 'required|numeric',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+    ]);
 
-        return redirect()->route('show', $product);
+    $product->name = $request->input('name');
+    $product->price = $request->input('price');
+    
+    if ($request->hasFile('image')) {
+        if ($product->image) {
+            Storage::disk('public')->delete($product->image);
+        }
+
+        // Store new image in the 'products' folder inside 'public/storage'
+        $path = $request->file('image')->store('products', 'public');
+
+        // Ensure database stores the relative path
+        $product->image = $path;
     }
+    
+    $product->save();
+
+    return redirect()->route('show', $id)->with('success', 'Product updated successfully');
+}
 
     /**
      * Remove the specified resource from storage.

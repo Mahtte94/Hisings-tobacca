@@ -1,3 +1,4 @@
+<x-app-layout>
 <h1>Edit product</h1>
 
 <form method="post" action="{{ route('update', $product) }}" enctype="multipart/form-data">
@@ -24,3 +25,4 @@
 
     <button>Edit Product</button>
 </form>
+</x-app-layout>

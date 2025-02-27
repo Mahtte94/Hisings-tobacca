@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Page</title>
-</head>
-<body>
+
+    <x-app-layout>
     <input type="text" id="search" placeholder="Search products...">
     <div id="product-list" style="display: none;"></div>
     <a href="{{ route('create') }}">Add new product</a>
@@ -70,6 +63,4 @@ document.getElementById('search').addEventListener('input', function() {
 });
 </script>
 
-
-</body>
-</html>
+</x-app-layout>

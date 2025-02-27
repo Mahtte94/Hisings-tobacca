@@ -1,3 +1,4 @@
+<x-app-layout>
 <h1>New Product</h1>
 
 @if ($errors->any())
@@ -42,3 +43,5 @@
     }
   });
 </script>
+
+</x-app-layout>

@@ -12,6 +12,7 @@ Route::get('/', [ProductController::class, 'index'])
 Route::get('dashboard', DashboardController::class)->middleware('auth');
 
 Route::post('login', LoginController::class)->middleware('guest');
+Route::get('logout', LogoutController::class);
 
 Route::get('/create', [ProductController::class, 'create'])
     ->name('create');

@@ -24,3 +24,6 @@ Route::patch('{product}', [ProductController::class, 'update'])
 
 Route::delete('{product}', [ProductController::class, 'destroy'])
     ->name('destroy');
+
+Route::get('/search-products', [ProductController::class, 'search'])
+->name('search');

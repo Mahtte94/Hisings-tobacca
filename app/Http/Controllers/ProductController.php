@@ -48,6 +48,19 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
+
+    public function search(Request $request)
+    {
+
+        $query = $request->input('query');
+
+        $products = Product::where('name', 'LIKE', "%{$query}%")
+            ->orWhere('description', 'LIKE', "%{$query}%")
+            ->get();
+
+        return response()->json($products);
+    }
+
     public function show(string $id)
     {
 
@@ -70,34 +83,33 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-{
-    $product = Product::findOrFail($id);
-    
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'price' => 'required|numeric',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
-    ]);
+    {
+        $product = Product::findOrFail($id);
 
-    $product->name = $request->input('name');
-    $product->price = $request->input('price');
-    
-    if ($request->hasFile('image')) {
-        if ($product->image) {
-            Storage::disk('public')->delete($product->image);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+
+        if ($request->hasFile('image')) {
+            if ($product->image) {
+                Storage::disk('public')->delete($product->image);
+            }
+            // Store new image in the 'products' folder inside 'public/storage'
+            $path = $request->file('image')->store('images', 'public');
+
+            // Ensure database stores the relative path
+            $product->image = $path;
         }
 
-        // Store new image in the 'products' folder inside 'public/storage'
-        $path = $request->file('image')->store('products', 'public');
+        $product->save();
 
-        // Ensure database stores the relative path
-        $product->image = $path;
+        return redirect()->route('show', $id)->with('success', 'Product updated successfully');
     }
-    
-    $product->save();
-
-    return redirect()->route('show', $id)->with('success', 'Product updated successfully');
-}
 
     /**
      * Remove the specified resource from storage.

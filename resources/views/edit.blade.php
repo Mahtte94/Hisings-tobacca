@@ -10,7 +10,11 @@
     <label for="image">Upload Image</label>
     <input type="file" name="image" id="imageInput" {{ $product->image }}">
 
-    <img id="imagePreview" src="" alt="Image Preview">
+    @if($product->image)
+    <div>
+      <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name}}">
+    </div>
+    @endif
 
     <label for="description">Description</label>
     <textarea name="description" id="description">{{ $product->description }}</textarea>

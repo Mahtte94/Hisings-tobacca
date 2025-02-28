@@ -1,6 +1,6 @@
 <x-app-layout>
-  <div class="max-w-3xl m-auto p-6 bg-white rounded-lg shadow-md mt-20">
-      <h1 class="text-2xl font-bold mb-6">Edit Product</h1>
+  <div class="max-w-3xl m-auto p-6 bg-gray-700 rounded-lg shadow-md mt-16">
+      <h1 class="text-2xl font-bold mb-6 text-white">Edit Product</h1>
 
       <form method="POST" action="{{ route('update', $product) }}" enctype="multipart/form-data" class="space-y-4">
           @method('PATCH')
@@ -14,14 +14,14 @@
                   <img 
                       src="{{ asset('storage/' . $product->image) }}" 
                       alt="{{ $product->name }}" 
-                      class="w-64 h-64 object-contain rounded-lg"
+                      class="text-white w-64 h-64 object-contain rounded-lg"
                   >
               </div>
           @endif
 
             <!-- Item Name -->
             <div>
-              <label for="name" class="block font-semibold">Product Name</label>
+              <label for="name" class="text-white block font-semibold mb-1">Product Name</label>
               <input 
                   type="text" 
                   name="name" 
@@ -33,19 +33,19 @@
 
           <!-- Image Upload -->
           <div>
-              <label for="image" class="block font-semibold">Upload Image</label>
+              <label for="image" class="text-white block font-semibold mb-1">Upload Image</label>
               <input 
                   type="file" 
                   name="image" 
                   id="imageInput" 
-                  class="w-1/3 p-2 border border-gray-300 rounded-lg"
+                  class="text-white w-1/3 p-2 border border-gray-300 rounded-lg"
               >
           </div>
 
 
          <!-- Description -->
           <div>
-              <label for="description" class="block font-semibold">Description</label>
+              <label for="description" class="text-white block font-semibold mb-1">Description</label>
               <textarea 
                   name="description" 
                   id="description" 
@@ -56,7 +56,7 @@
 
           <!-- Price -->
           <div>
-              <label for="price" class="block font-semibold">Price</label>
+              <label for="price" class="text-white block font-semibold mb-1">Price</label>
               <input 
                   type="text" 
                   name="price" 

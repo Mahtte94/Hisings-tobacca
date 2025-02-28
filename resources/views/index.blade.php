@@ -53,6 +53,7 @@
                     </a> <!-- End of the link wrapping the product card -->
                 @endforeach
             </div>
+            {{ $products->links('pagination.custom') }}
         </div>
     </div>
 </x-app-layout>
@@ -70,7 +71,13 @@
         fetch(`/search-products?query=${query}`)
             .then(response => response.json())
             .then(products => {
-                let output = `<h1 class="text-2xl font-bold mb-4 text-white">Search Results</h1>`;
+                let output = ` <a 
+                href="{{ route('create') }}" 
+                class="block text-white bg-blue-500 hover:bg-blue-600 font-bold py-2 px-4 rounded text-center w-1/4"
+            >
+                Add New Product
+            </a>
+                <h1 class="text-2xl font-bold mt-6 text-white">Search Results</h1>`;
                 
                 if (products.length > 0) {
                     output += `<div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3">`;
@@ -79,7 +86,7 @@
                         output += `
                             <a href="/products/${product.id}" 
                                 class="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col max-h-80 transition transform hover:bg-gray-600 hover:scale-105 hover:shadow-xl">
-                                <h2 class="text-xl font-semibold text-white">
+                                <h2 class="mx-auto text-xl font-semibold text-white">
                                     ${product.name}
                                 </h2>
                                 <img 
@@ -90,10 +97,12 @@
                                 <p class="text-blue-500 font-semibold">See More</p>
                                 <p class="text-blue-500 font-bold">$${product.price}</p>
                             </a>
+                            
                         `;
                     });
 
-                    output += `</div>`;
+                    output += `</div>
+                    {{ $products->links('pagination.custom') }}`;
                 } else {
                     output = `<p class="text-gray-500 text-lg">No products found.</p>`;
                 }

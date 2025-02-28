@@ -6,16 +6,21 @@ use App\Http\Requests\SaveProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         return view('index', [
-            'products' => Product::all()
+            'products' => DB::table('product')->orderBy('id')->paginate(15)
         ]);
     }
 
@@ -42,7 +47,7 @@ class ProductController extends Controller
         ]);
 
 
-        return redirect()->route('index');
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -120,6 +125,6 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return redirect()->route('index');
+        return redirect()->route('dashboard');
     }
 }

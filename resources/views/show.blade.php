@@ -1,9 +1,9 @@
 <x-app-layout>
   <div class="p-16">
     <!-- Ensure flex layout with constraints on height -->
-    <div class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md flex flex-col h-[500px] sm:h-[600px] md:h-[800px] lg:h-[1000px] overflow-y-auto">
+    <div class="max-w-xl mx-auto p-6 bg-gray-700 rounded-lg shadow-md flex flex-col h-[500px] sm:h-[600px] md:h-[800px] lg:h-[1000px] overflow-y-auto">
       <!-- Product Name -->
-      <h1 class="mx-auto text-3xl font-bold mb-4">{{ $product->name }}</h1>
+      <h1 class="mx-auto text-white text-3xl font-bold mb-4">{{ $product->name }}</h1>
 
       <!-- Product Image -->
       <img 
@@ -13,7 +13,7 @@
       >
 
       <!-- Product Description -->
-      <p class="mt-4 text-gray-700 flex-grow">{{ $product->description }}</p>
+      <p class="mt-4 text-white flex-grow">{{ $product->description }}</p>
 
       <!-- Product Price -->
       <p class="mt-2 text-lg font-semibold text-blue-500">${{ $product->price }}</p>

@@ -66,6 +66,11 @@
               >
           </div>
 
+          <!-- Category -->
+          <div>
+            <label for="category">Category</label>
+            <input type="checkbox" name="category" id="category">
+          </div>
           <!-- Submit Button -->
           <button 
               type="submit" 

@@ -28,10 +28,14 @@
                         <!-- Dropdown Content -->
                         <div x-show="categoryOpen" @click.away="categoryOpen = false" 
                                 class="absolute left-0 top-full mt-1 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg z-50">
-                            <a href="{{ route('category.show', 'cigarettes') }}" class="block px-4 py-2 text-white hover:bg-gray-700 hover:text-gray-300 transition duration-150 ease-in-out">Cigarettes</a>
-                            <a href="{{ route('category.show', 'cigars') }}" class="block px-4 py-2 text-white hover:bg-gray-700 hover:text-gray-300 transition duration-150 ease-in-out">Cigars</a>
-                            <a href="{{ route('category.show', 'pipe-tobacco') }}" class="block px-4 py-2 text-white hover:bg-gray-700 hover:text-gray-300 transition duration-150 ease-in-out">Pipe Tobacco</a>
-                            <a href="{{ route('category.show', 'snuff') }}" class="block px-4 py-2 text-white hover:bg-gray-700 hover:text-gray-300 transition duration-150 ease-in-out">Snuff</a>
+                            <a href="{{ route('category.show', 'white') }}" class="block px-4 py-2 text-white 
+                            hover:bg-gray-700 rounded-md hover:text-gray-300 transition duration-150 ease-in-out">White</a>
+                            <a href="{{ route('category.show', 'black') }}" class="block px-4 py-2 text-white
+                             hover:bg-gray-700 rounded-md hover:text-gray-300 transition duration-150 ease-in-out">Black</a>
+                            <a href="{{ route('category.show', 'powder') }}" class="block px-4 py-2 text-white
+                             hover:bg-gray-700 rounded-md hover:text-gray-300 transition duration-150 ease-in-out">Powder</a>
+                            <a href="{{ route('category.show', 'pouches') }}" class="block px-4 py-2 text-white
+                             hover:bg-gray-700 rounded-md hover:text-gray-300 transition duration-150 ease-in-out">Pouches</a>
                         </div>
                     </div>
                 </div>

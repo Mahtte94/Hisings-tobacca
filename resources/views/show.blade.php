@@ -1,8 +1,10 @@
+@php use Illuminate\Support\Facades\Auth; @endphp
 <h1>{{ $product->name }}</h1>
 <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name}}">
 <p> {{ $product->description }} </p>
 <p> {{ $product->price }} </p>
 
+@auth
 <a href="{{ route('edit', $product->id) }}">Edit</a>
 
 <form method="post" action="{{ route('destroy', $product) }}">
@@ -11,3 +13,4 @@
 
     <button>Delete</button>
 </form>
+@endauth

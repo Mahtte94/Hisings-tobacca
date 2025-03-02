@@ -6,17 +6,22 @@ use App\Http\Requests\SaveProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('index', [
-            'products' => Product::all()
-        ]);
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        $products = Product::all();
+
+        return view('index', compact('products'));
     }
 
     /**

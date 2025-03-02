@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Auth; @endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,10 +23,11 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
         <button type="submit">Login</button>
     </form>
-
     <input type="text" id="search" placeholder="Search products...">
     <div id="product-list" style="display: none;"></div>
+    @auth
     <a href="{{ route('create') }}">Add new product</a>
+    @endauth
 
 
     <div id="allProducts" style="display: block">

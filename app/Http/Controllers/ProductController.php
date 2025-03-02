@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Category;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index(): View
     {
         return view('index', [
-            'products' => DB::table('product')->orderBy('id')->paginate(15)
+            'products' => DB::table('products')->orderBy('id')->paginate(15)
         ]);
     }
 
@@ -38,13 +38,17 @@ class ProductController extends Controller
     {
         $imagePath = $request->file('image')->store('images', 'public');
 
-        Product::create([
+        $product = Product::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
             'image' => $imagePath,
         ]);
 
+        // Attach categories if present
+        if ($request->has('categories')) {
+            $product->categories()->attach($request->input('categories'));
+        }
 
         return redirect()->route('dashboard');
     }
@@ -68,10 +72,10 @@ class ProductController extends Controller
     public function show(string $id)
     {
 
-        $product = Product::findOrFail($id);
+        $products = Product::findOrFail($id);
 
         return view('show', [
-            'product' => $product
+            'products' => $products
         ]);
     }
 
@@ -95,6 +99,8 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'categories' => 'nullable|array',
+            'categories.*' => 'exists:categories,id',
         ]);
 
         $product->name = $request->input('name');
@@ -105,14 +111,16 @@ class ProductController extends Controller
             if ($product->image) {
                 Storage::disk('public')->delete($product->image);
             }
-            // Store new image in the 'products' folder inside 'public/storage'
             $path = $request->file('image')->store('images', 'public');
-
-            // Ensure database stores the relative path
             $product->image = $path;
         }
 
         $product->save();
+
+        // Sync categories if present
+        if ($request->has('categories')) {
+            $product->categories()->sync($request->input('categories'));
+        }
 
         return redirect()->route('show', $id)->with('success', 'Product updated successfully');
     }
@@ -125,5 +133,16 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('dashboard');
+    }
+
+    public function showByCategory($name)
+    {
+        $category = Category::where('name', $name)->firstOrFail();
+        $products = $category->products()->paginate(15);
+
+        return view('category', [
+            'category' => $category,
+            'products' => $products
+        ]);
     }
 }

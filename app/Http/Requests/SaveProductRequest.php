@@ -22,10 +22,12 @@ class SaveProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max: 100',
-            'description' => 'nullable|max:500',
-            'price' => 'required|decimal: 0,2|min:0',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'categories' => 'nullable|array',
+            'categories.*' => 'exists:categories,id',
         ];
     }
 }

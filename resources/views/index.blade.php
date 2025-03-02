@@ -26,7 +26,7 @@
                 @foreach($products as $product)
                     <!-- Wrap the entire product card in a link -->
                     <a href="{{ route('show', $product->id) }}" 
-                        class="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col max-h-80 transition transform hover:bg-gray-600 hover:scale-105 hover:shadow-xl">
+                        class="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col h-80 transition transform hover:bg-gray-600 hover:scale-105 hover:shadow-xl">
                         <!-- Product Name -->
                         <h2 class="mx-auto text-xl font-semibold text-white hover:text-blue-500">
                             {{ $product->name }}
@@ -40,8 +40,8 @@
                         >
 
                         <!-- Description -->
-                        <p class="text-white mt-2 flex-grow line-clamp-3">
-                            {{ Str::limit($product->description, 100) }}
+                        <p class="text-white mt-2 overflow-hidden break-words">
+                            {{ Str::limit($product->description, 60) }}
                         </p>
 
                         @if(strlen($product->description) > 100)
@@ -85,7 +85,7 @@
                     products.forEach(product => {
                         output += `
                             <a href="/products/${product.id}" 
-                                class="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col max-h-80 transition transform hover:bg-gray-600 hover:scale-105 hover:shadow-xl">
+                                class="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col h-80 transition transform hover:bg-gray-600 hover:scale-105 hover:shadow-xl">
                                 <h2 class="mx-auto text-xl font-semibold text-white">
                                     ${product.name}
                                 </h2>
@@ -93,7 +93,7 @@
                                     src="/storage/${product.image}" 
                                     class="w-full h-32 object-contain rounded-lg mt-2"
                                 >
-                                <p class="text-white mt-2 line-clamp-3">${product.description.length > 100 ? product.description.substring(0, 100) + '...' : product.description}</p>
+                                <p class="text-white mt-2 overflow-hidden break-words">${product.description.length > 100 ? product.description.substring(0, 60) + '...' : product.description}</p>
                                 <p class="text-blue-500 font-semibold">See More</p>
                                 <p class="text-blue-500 font-bold">$${product.price}</p>
                             </a>

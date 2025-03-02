@@ -5,7 +5,7 @@ use App\Http\Controllers\ProductController;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function (){
+Route::get('/', function () {
     return view('/auth/login');
 });
 
@@ -38,13 +38,12 @@ Route::delete('{product}', [ProductController::class, 'destroy'])
     ->name('destroy');
 
 Route::get('/search-products', [ProductController::class, 'search'])
-->name('search');
+    ->name('search');
 
-Route::get('/categories/{category}', [ProductController::class, 'show'])
-->name('category.show'); 
-
-
+Route::get('/categories/{name}', [ProductController::class, 'showByCategory'])
+    ->name('category.show');
 
 
-require __DIR__.'/auth.php';
 
+
+require __DIR__ . '/auth.php';

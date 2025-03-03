@@ -22,6 +22,15 @@
   <label for="description">Description</label>
   <textarea name="description" id="description">{{ old('description')}}</textarea>
 
+  <label for="strength">Strength</label>
+  <input type="number" name="strength" id="strength" min="0" value="{{ old('strength') }}">
+
+  <label for="type">Type</label>
+  <select name="type" id="type">
+    <option value="white" {{ old('type') == 'white' ? 'selected' : '' }}>White</option>
+    <option value="brown" {{ old('type') == 'brown' ? 'selected' : '' }}>Brown</option>
+  </select>
+
   <label for="price">Price</label>
   <input type="text" name="price" id="price" value="{{ old('price')}}">
 

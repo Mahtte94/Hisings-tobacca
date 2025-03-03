@@ -13,6 +13,8 @@
         <a href="{{ route('show', $product->id)  }}">{{ $product->name }}</a>
         <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name}}">
         <p>{{ $product->description }}</p>
+        <p>{{ $product->strength }}</p>
+        <p>{{ $product->type }}</p>
         <p>{{ $product->price }}</p>
 
         @endforeach

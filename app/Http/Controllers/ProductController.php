@@ -42,12 +42,14 @@ class ProductController extends Controller
         Product::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
+            'strength' => $request->input('strength'),
+            'type' => $request->input('type'),
             'price' => $request->input('price'),
             'image' => $imagePath,
         ]);
 
 
-        return redirect()->route('index');
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -93,11 +95,17 @@ class ProductController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'strength' => 'nullable|numeric',
+            'type' => 'required|string',
             'price' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->strength = $request->input('strength');
+        $product->type = $request->input('type');
         $product->price = $request->input('price');
 
         if ($request->hasFile('image')) {
@@ -123,6 +131,6 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return redirect()->route('index');
+        return redirect()->route('dashboard');
     }
 }

@@ -26,7 +26,7 @@ class SaveProductRequest extends FormRequest
             'description' => 'required|string',
             'price' => 'required|numeric',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'categories' => 'nullable|array',
+            'categories' => 'required|array',
             'categories.*' => 'exists:categories,id',
         ];
     }

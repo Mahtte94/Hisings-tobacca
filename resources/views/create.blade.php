@@ -15,7 +15,7 @@
   <input type="text" name="name" id="name" value=" {{ old('name')}}">
 
   <label for="image">Upload Image</label>
-  <input type="file" name="image" id="imageInput" {{ old('image')}}">
+  <input type="file" name="image" id="image" {{ old('image')}}">
 
   <img id="imagePreview" src="" alt="Image Preview">
 
@@ -38,7 +38,7 @@
 </form>
 
 <script>
-  document.getElementById('imageInput').addEventListener('change', function(event) {
+  document.getElementById('image').addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();

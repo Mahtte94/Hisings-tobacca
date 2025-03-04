@@ -8,7 +8,7 @@
   <input type="text" name="name" id="name" value=" {{ $product->name }}">
 
   <label for="image">Upload Image</label>
-  <input type="file" name="image" id="imageInput" {{ $product->image }}">
+  <input type="file" name="image" id="image" {{ $product->image }}">
 
   @if($product->image)
   <div>

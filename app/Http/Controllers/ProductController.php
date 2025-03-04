@@ -19,7 +19,7 @@ class ProductController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        $products = Product::all();
+        $products = Product::paginate(4);;
 
         return view('index', compact('products'));
     }

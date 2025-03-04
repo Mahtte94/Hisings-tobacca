@@ -14,7 +14,7 @@ class DashboardController extends Controller
     public function __invoke(Request $request)
     {
         $user = Auth::user();
-        $products = Product::all();
+        $products = Product::paginate(4);
         return view('dashboard', [
             'user' => $user,
             'products' => $products

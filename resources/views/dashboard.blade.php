@@ -18,6 +18,8 @@
         <p>{{ $product->price }}</p>
 
         @endforeach
+
+        {{ $products->links() }}
         <div>
         </div>
 

@@ -1,16 +1,5 @@
 @php use Illuminate\Support\Facades\Auth; @endphp
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Page</title>
-</head>
-
-<body>
-
+<x-view.layout>
     <form method="post" action="/login">
         <div>
             <label for="email">Email</label>
@@ -47,32 +36,32 @@
             @endforeach
 
             {{ $products->links() }}
-            <div>
-            </div>
+        </div>
+    </div>
 
 
-            <script>
-                document.getElementById('search').addEventListener('input', function() {
-                    let query = this.value.trim();
+    <script>
+        document.getElementById('search').addEventListener('input', function() {
+            let query = this.value.trim();
 
 
 
-                    if (query.length === 0) {
-                        document.getElementById('allProducts').style.display = "block";
-                        document.getElementById('product-list').style.display = "none";
-                        return;
-                    }
+            if (query.length === 0) {
+                document.getElementById('allProducts').style.display = "block";
+                document.getElementById('product-list').style.display = "none";
+                return;
+            }
 
-                    fetch(`/search-products?query=${query}`)
-                        .then(response => response.json())
-                        .then(products => {
-                            let output = "<h1>Products</h1>";
+            fetch(`/search-products?query=${query}`)
+                .then(response => response.json())
+                .then(products => {
+                    let output = "<h1>Products</h1>";
 
-                            if (products.length > 0) {
+                    if (products.length > 0) {
 
-                                products.forEach(product => {
+                        products.forEach(product => {
 
-                                    output += `
+                            output += `
                     
                     <div>
                         <a href="${product.id}">${product.name}</a>
@@ -82,19 +71,16 @@
                         
                     </div>`;
 
-                                    document.getElementById('allProducts').style.display = "none";
-                                });
-                            } else {
-                                output = "<p>No products found.</p>";
-                            }
-
-                            document.getElementById('product-list').innerHTML = output;
-                            document.getElementById('product-list').style.display = "block";
+                            document.getElementById('allProducts').style.display = "none";
                         });
+                    } else {
+                        output = "<p>No products found.</p>";
+                    }
+
+                    document.getElementById('product-list').innerHTML = output;
+                    document.getElementById('product-list').style.display = "block";
                 });
-            </script>
+        });
+    </script>
 
-
-</body>
-
-</html>
+</x-view.layout>

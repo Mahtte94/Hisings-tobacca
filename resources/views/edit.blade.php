@@ -2,6 +2,15 @@
   <div class="max-w-3xl m-auto p-6 bg-gray-700 rounded-lg shadow-md mt-16">
       <h1 class="text-2xl font-bold mb-6 text-white">Edit Product</h1>
 
+        <!-- Display Errors -->
+        @if ($errors->any())
+        <ul class="w-1/2 mb-4 p-4 bg-red-100 text-red-600 rounded-lg">
+            @foreach ($errors->all() as $error)
+                <li class="list-disc ml-4">{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
       <form method="POST" action="{{ route('update', $product) }}" enctype="multipart/form-data" class="space-y-4">
           @method('PATCH')
           @csrf

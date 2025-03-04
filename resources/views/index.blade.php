@@ -26,7 +26,9 @@
     <input type="text" id="search" placeholder="Search products...">
     <div id="product-list" style="display: none;"></div>
     @auth
+    @if(auth()->user()->isAdmin())
     <a href="{{ route('create') }}">Add new product</a>
+    @endif
     @endauth
 
 

@@ -9,10 +9,12 @@
 @auth
 <a href="{{ route('edit', $product->id) }}">Edit</a>
 
+@if(auth()->user()->isAdmin())
 <form method="post" action="{{ route('destroy', $product) }}">
     @method('DELETE')
     @csrf
 
     <button>Delete</button>
 </form>
+@endif
 @endauth

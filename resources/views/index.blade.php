@@ -35,11 +35,11 @@
             <h1>Products</h1>
             @foreach($products as $product)
 
-            <a href="{{ route('show', $product->id)  }}">{{ $product->name }}</a>
+            <a href="{{ route('show', $product->id)  }}">{{ ucfirst($product->name) }}</a>
             <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name}}">
-            <p>{{ $product->description }}</p>
+            <p>{{ ucfirst($product->description) }}</p>
             <p>{{ $product->strength }}</p>
-            <p>{{ $product->type }}</p>
+            <p>{{ ucfirst($product->type) }}</p>
             <p>{{ $product->price }}</p>
 
             @endforeach

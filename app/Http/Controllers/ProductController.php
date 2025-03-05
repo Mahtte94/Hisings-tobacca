@@ -28,6 +28,9 @@ class ProductController extends Controller
      */
     public function create()
     {
+        if(!auth()->user()->isAdmin()){
+            abort(403, 'Unauthorized action');
+        }
         return view('create');
     }
 

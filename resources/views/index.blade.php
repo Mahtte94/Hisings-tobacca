@@ -12,14 +12,16 @@
         <div id="product-list" class="hidden text-white mt-6 space-y-4"></div>
 
         <!-- All Products -->
+
         <div id="allProducts" class="mt-6">
+            @if(auth()->user()->isAdmin())
             <a 
                 href="{{ route('create') }}" 
                 class="block text-white bg-blue-500 hover:bg-blue-600 font-bold py-2 px-4 rounded text-center w-1/4"
             >
                 Add New Product
             </a>
-
+            @endif
             <h1 class="text-white text-2xl font-bold mt-6">Products</h1>
 
             <div class="grid gap-6 mt-4 sm:grid-cols-2 md:grid-cols-3">
@@ -94,7 +96,7 @@
                                     class="w-full h-32 object-contain rounded-lg mt-2"
                                 >
                                 <p class="text-white mt-2 overflow-hidden break-words">${product.description.length > 100 ? product.description.substring(0, 60) + '...' : product.description}</p>
-                                <p class="text-blue-500 font-semibold">See More</p>
+                                ${product.description.length > 100 ? '<p class="text-blue-500 font-semibold">See More</p>' : ''}
                                 <p class="text-blue-500 font-bold">$${product.price}</p>
                             </a>
                             

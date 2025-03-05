@@ -19,7 +19,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/create', [ProductController::class, 'create'])
-    ->name('create');
+    ->name('create')
+    ->where('role', 'admin');
 
 Route::post('/store', [ProductController::class, 'store'])
     ->name('store');

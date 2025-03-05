@@ -31,7 +31,9 @@ class ProductController extends Controller
         if(!auth()->user()->isAdmin()){
             abort(403, 'Unauthorized action');
         }
-        return view('create');
+
+        $product = new Product();
+        return view('create', compact('product'));
     }
 
     /**
@@ -46,6 +48,7 @@ class ProductController extends Controller
             'description' => $request->input('description'),
             'price' => $request->input('price'),
             'image' => $imagePath,
+            'strength' => $request->input('strength')
         ]);
 
         // Attach categories if present
@@ -133,6 +136,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+
         $product->delete();
 
         return redirect()->route('dashboard');

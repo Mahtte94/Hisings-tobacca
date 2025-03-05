@@ -12,6 +12,17 @@
           class="w-48 mx-auto max-w-md  rounded-lg shadow-md"
       >
 
+       <!-- Product Strength -->
+
+       <div id="productStrength" data-strength="{{ $products->strength }}" class="flex items-center space-x-1">
+        @for ($i = 1; $i <= 6; $i++)
+            <span class="w-4 h-4 border border-white rounded-full  
+                         @if($i <= $products->strength) bg-white @endif">
+            </span>
+        @endfor
+    </div>
+    
+
       <!-- Product Description -->
       <p class="mt-4 text-white overflow-hidden break-words">{{ $products->description }}</p>
 
@@ -28,6 +39,7 @@
           </a>
 
           <!-- Delete Form -->
+          @if(auth()->user()->isAdmin())
           <form method="POST" action="{{ route('destroy', $products) }}" 
               onsubmit="return confirm('Are you sure you want to delete this product?');"
           >
@@ -41,7 +53,23 @@
                   Delete
               </button>
           </form>
+          @endif
       </div>
     </div>
   </div>
 </x-app-layout>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+        let strengthValue = document.getElementById("productStrength").getAttribute("data-strength");
+
+        let circles = document.querySelectorAll(".strengthCircle");
+        circles.forEach((circle, index) => {
+            if (index < strengthValue) {
+                circle.classList.add("filled");
+            }
+        });
+    });
+
+</script>

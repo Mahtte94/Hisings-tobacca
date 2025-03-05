@@ -71,31 +71,36 @@
               >
           </div>
 
+           <!-- Strength -->
+          <div>
+            <label for="strength">Pick the strength</label>
+            <input type="number" name="strength" id="strength" min="1" max="6" value="{{ old('strength', $product->strength)}}">
+          </div>
           <!-- Categories -->
-<div>
-    <label for="categories" class="text-white block font-semibold mb-1">Categories</label>
-    <select 
-        name="categories[]" 
-        id="categories" 
-        multiple 
-        class="w-2/3 p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
-    >
-        @foreach(\App\Models\Category::all() as $category)
-            <option value="{{ $category->id }}">{{ $category->name }}</option>
-        @endforeach
-    </select>
-    <p class="text-sm text-gray-300 mt-1">Hold Ctrl (or Cmd) to select multiple categories</p>
-</div>
+            <div>
+                <label for="categories" class="text-white block font-semibold mb-1">Categories</label>
+                <select 
+                    name="categories[]" 
+                    id="categories" 
+                    multiple 
+                    class="w-2/3 p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
+                >
+                    @foreach(\App\Models\Category::all() as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                <p class="text-sm text-gray-300 mt-1">Hold Ctrl (or Cmd) to select multiple categories</p>
+            </div>
 
-          <!-- Submit Button -->
-          <button 
-              type="submit" 
-              class="w-1/4 bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600"
-          >
-              Create Product
-          </button>
-      </form>
-  </div>
+                    <!-- Submit Button -->
+                    <button 
+                        type="submit" 
+                        class="w-1/4 bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600"
+                    >
+                        Create Product
+                    </button>
+                </form>
+            </div>
 
   <script>
       document.getElementById('imageInput').addEventListener('change', function(event) {

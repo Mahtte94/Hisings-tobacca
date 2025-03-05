@@ -65,7 +65,7 @@
         let query = this.value.trim();
 
         if (query.length === 0) {
-            document.getElementById('allProducts').style.display = "block";
+            document.getElementById('allProducts').style.display = "flex";
             document.getElementById('product-list').style.display = "none";
             return;
         }
@@ -75,7 +75,7 @@
             .then(products => {
                 let output = ` <a 
                 href="{{ route('create') }}" 
-                class="block text-white bg-blue-500 hover:bg-blue-600 font-bold py-2 px-4 rounded text-center w-1/4"
+                class="flex text-white bg-blue-500 hover:bg-blue-600 font-bold py-2 px-4 rounded text-center w-1/4"
             >
                 Add New Product
             </a>
@@ -110,7 +110,7 @@
                 }
 
                 document.getElementById('product-list').innerHTML = output;
-                document.getElementById('product-list').style.display = "block";
+                document.getElementById('product-list').style.display = "flex";
                 document.getElementById('allProducts').style.display = "none";
             });
     });

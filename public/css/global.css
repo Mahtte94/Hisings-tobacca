@@ -2,11 +2,51 @@ body {
     margin: 0;
 }
 
-img {
-    width: 20rem;
-}
 
 #allProducts {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#productImage {
+    width: 20rem;
+}
+
+#productDisplay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#productName {
+    font-weight: 600;
+}
+
+#productDescription, #productType, #productPrice {
+    font-style: italic;
+    margin: 0;
+}
+
+.strengthCircle {
+    display: inline-block;
+    border: 0.1rem solid #000;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+}
+
+.strengthCircle.filled {
+    background-color: #000;
+}
+
+svg {
+    width: 1.5rem;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }

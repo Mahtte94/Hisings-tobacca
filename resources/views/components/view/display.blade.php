@@ -3,12 +3,17 @@
     @foreach($products as $product)
     <div id="productDisplay">
 
-        <a href="{{ route('show', $product->id)  }}">{{ ucfirst($product->name) }}</a>
-        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name}}">
-        <p>{{ ucfirst($product->description) }}</p>
-        <p>{{ $product->strength }}</p>
-        <p>{{ ucfirst($product->type) }}</p>
-        <p>{{ $product->price }}</p>
+        <a href="{{ route('show', $product->id)  }}" id="productName">{{ ucfirst($product->name) }}</a>
+        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name}}" id="productImage">
+        <p id="productDescription">{{ ucfirst($product->description) }}</p>
+        <div id="productStrength" data-strength="{{ $product->strength }}">
+            @for ($i = 1; $i <= 6; $i++)
+                <span class="strengthCircle {{ $i <= $product->strength ? 'filled' : '' }}"></span>
+                @endfor
+        </div>
+        <!-- <div id="productStrength" value="{{ $product->strength }}"></div> !-->
+        <p id="productType">{{ ucfirst($product->type) }}</p>
+        <p id="productPrice">{{ $product->price }}</p>
 
     </div>
     @endforeach
@@ -55,5 +60,16 @@
                 document.getElementById('product-list').innerHTML = output;
                 document.getElementById('product-list').style.display = "flex";
             });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        let strengthValue = document.getElementById("productStrength").getAttribute("data-strength");
+
+        let circles = document.querySelectorAll(".strengthCircle");
+        circles.forEach((circle, index) => {
+            if (index < strengthValue) {
+                circle.classList.add("filled");
+            }
+        });
     });
 </script>

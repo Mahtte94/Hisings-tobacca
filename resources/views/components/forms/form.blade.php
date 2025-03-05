@@ -12,7 +12,7 @@
 <textarea name="description" id="description">{{ old('description', $product->description ?? '') }}</textarea>
 
 <label for="strength">Strength</label>
-<input type="number" name="strength" id="strength" min="0" value="{{ old('strength', $product->strength) }}">
+<input type="number" name="strength" id="strength" min="1" max="6" value="{{ old('strength', $product->strength) }}">
 
 <label for="type">Type</label>
 <select name="type" id="type">

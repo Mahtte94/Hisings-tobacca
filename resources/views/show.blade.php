@@ -24,7 +24,7 @@
     
 
       <!-- Product Description -->
-      <p class="mt-4 text-white overflow-hidden break-words">{{ $products->description }}</p>
+      <p class="mt-2 text-white overflow-hidden break-words">{{ $products->description }}</p>
 
       <!-- Product Price -->
       <p class="mt-2 text-lg font-semibold text-blue-500">${{ $products->price }}</p>

@@ -17,7 +17,7 @@
             @if(auth()->user()->isAdmin())
             <a 
                 href="{{ route('create') }}" 
-                class="block text-white bg-blue-500 hover:bg-blue-600 font-bold py-2 px-4 rounded text-center w-1/4"
+                class="flex text-white bg-blue-500 hover:bg-blue-600 font-bold py-2 px-4 rounded text-center w-1/4"
             >
                 Add New Product
             </a>
@@ -41,6 +41,16 @@
                             class="w-full h-32 object-contain rounded-lg mt-2"
                         >
 
+                        <!-- Product Strength -->
+
+                        <div id="productStrength" data-strength="{{ $product->strength }}" class="flex items-center space-x-1">
+                            @for ($i = 1; $i <= 6; $i++)
+                                <span class="w-4 h-4 border border-white rounded-full  
+                                            @if($i <= $product->strength) bg-white @endif">
+                                </span>
+                            @endfor
+                        </div>
+
                         <!-- Description -->
                         <p class="text-white mt-2 overflow-hidden break-words">
                             {{ Str::limit($product->description, 60) }}
@@ -52,6 +62,7 @@
 
                         <!-- Price -->
                         <p class="text-blue-500 font-bold">${{ $product->price }}</p>
+                        
                     </a> <!-- End of the link wrapping the product card -->
                 @endforeach
             </div>
@@ -65,7 +76,7 @@
         let query = this.value.trim();
 
         if (query.length === 0) {
-            document.getElementById('allProducts').style.display = "flex";
+            document.getElementById('allProducts').style.display = "block";
             document.getElementById('product-list').style.display = "none";
             return;
         }
@@ -79,10 +90,10 @@
             >
                 Add New Product
             </a>
-                <h1 class="text-2xl font-bold mt-6 text-white">Search Results</h1>`;
+                <h1 class="text-white text-2xl font-bold mt-6">Search Results</h1>`;
                 
                 if (products.length > 0) {
-                    output += `<div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3">`;
+                    output += `<div class="grid gap-6 mt-4 sm:grid-cols-2 md:grid-cols-3">`;
 
                     products.forEach(product => {
                         output += `
@@ -110,7 +121,7 @@
                 }
 
                 document.getElementById('product-list').innerHTML = output;
-                document.getElementById('product-list').style.display = "flex";
+                document.getElementById('product-list').style.display = "block";
                 document.getElementById('allProducts').style.display = "none";
             });
     });

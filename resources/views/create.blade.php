@@ -73,7 +73,7 @@
 
            <!-- Strength -->
           <div>
-            <label for="strength">Pick the strength</label>
+            <label for="strength" class="text-white block font-semibold mb-1">Pick the strength</label>
             <input type="number" name="strength" id="strength" min="1" max="6" value="{{ old('strength', $product->strength)}}">
           </div>
           <!-- Categories -->

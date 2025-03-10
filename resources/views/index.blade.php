@@ -17,7 +17,7 @@
             @if(auth()->user()->isAdmin())
             <a 
                 href="{{ route('create') }}" 
-                class="flex text-white bg-blue-500 hover:bg-blue-600 font-bold py-2 px-4 rounded text-center w-1/4"
+                class="flex text-white bg-blue-500 hover:bg-blue-600 font-bold py-2 px-4 rounded items-center justify-center w-1/4"
             >
                 Add New Product
             </a>
@@ -86,7 +86,7 @@
             .then(products => {
                 let output = ` <a 
                 href="{{ route('create') }}" 
-                class="flex text-white bg-blue-500 hover:bg-blue-600 font-bold py-2 px-4 rounded text-center w-1/4"
+                class="flex text-white bg-blue-500 hover:bg-blue-600 font-bold py-2 px-4 rounded items-center justify-center w-1/4"
             >
                 Add New Product
             </a>

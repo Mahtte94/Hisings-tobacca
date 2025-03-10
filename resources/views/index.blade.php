@@ -28,7 +28,7 @@
                 @foreach($products as $product)
                     <!-- Wrap the entire product card in a link -->
                     <a href="{{ route('show', $product->id) }}" 
-                        class="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col h-80 transition transform hover:bg-gray-600 hover:scale-105 hover:shadow-xl">
+                        class="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col h-80 transition transform hover:scale-105 hover:shadow-xl">
                         <!-- Product Name -->
                         <h2 class="mx-auto text-xl font-semibold text-white hover:text-blue-500">
                             {{ $product->name }}
@@ -57,11 +57,11 @@
                         </p>
 
                         @if(strlen($product->description) > 100)
-                        <p class="text-blue-500 font-semibold">See More</p>
+                        <p class="text-blue-200 font-semibold">See More</p>
                         @endif
 
                         <!-- Price -->
-                        <p class="text-blue-500 font-bold">${{ $product->price }}</p>
+                        <p class="text-blue-200 font-bold">${{ $product->price }}</p>
                         
                     </a> <!-- End of the link wrapping the product card -->
                 @endforeach
@@ -96,6 +96,12 @@
                     output += `<div class="grid gap-6 mt-4 sm:grid-cols-2 md:grid-cols-3">`;
 
                     products.forEach(product => {
+
+                        let strengthHtml = '<div class="flex items-center space-x-1">';
+                    for (let i = 1; i <= 6; i++) {
+                        strengthHtml += `<span class="w-4 h-4 border border-white rounded-full ${i <= product.strength ? 'bg-white' : ''}"></span>`;
+                    }
+                    strengthHtml += '</div>';
                         output += `
                             <a href="/products/${product.id}" 
                                 class="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col h-80 transition transform hover:bg-gray-600 hover:scale-105 hover:shadow-xl">
@@ -106,9 +112,12 @@
                                     src="/storage/${product.image}" 
                                     class="w-full h-32 object-contain rounded-lg mt-2"
                                 >
+
+                                 ${strengthHtml}
+                               
                                 <p class="text-white mt-2 overflow-hidden break-words">${product.description.length > 100 ? product.description.substring(0, 60) + '...' : product.description}</p>
-                                ${product.description.length > 100 ? '<p class="text-blue-500 font-semibold">See More</p>' : ''}
-                                <p class="text-blue-500 font-bold">$${product.price}</p>
+                                ${product.description.length > 100 ? '<p class="text-blue-200 font-semibold">See More</p>' : ''}
+                                <p class="text-blue-200 font-bold">$${product.price}</p>
                             </a>
                             
                         `;

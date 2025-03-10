@@ -16,10 +16,29 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
+        $sort = $request->input('sort', 'id');
+        $direction = $request->input('direction', 'asc');
+
+        $allowedSorts = ['id', 'name', 'price', 'strength'];
+
+        if (!in_array($sort, $allowedSorts)) {
+            $sort = 'id';
+        }
+
+        if (!in_array($direction, ['asc', 'desc'])) {
+            $direction = 'asc';
+        }
+
+        $products = DB::table('products')
+            ->orderBy($sort, $direction)
+            ->paginate(4);
+
         return view('index', [
-            'products' => DB::table('products')->orderBy('id')->paginate(15)
+            'products' => $products,
+            'sort' => $sort,
+            'direction' => $direction
         ]);
     }
 
@@ -28,7 +47,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        if(!auth()->user()->isAdmin()){
+        if (!auth()->user()->isAdmin()) {
             abort(403, 'Unauthorized action');
         }
 

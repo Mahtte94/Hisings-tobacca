@@ -21,6 +21,16 @@
                       class="w-full h-32 object-contain rounded-lg mt-2"
                   >
 
+                   <!-- Product Strength -->
+
+                <div id="productStrength" data-strength="{{ $product->strength }}" class="flex items-center space-x-1">
+                    @for ($i = 1; $i <= 6; $i++)
+                        <span class="w-4 h-4 border border-white rounded-full  
+                            @if($i <= $product->strength) bg-white @endif">
+                        </span>
+                    @endfor
+                </div>
+
                   <p class="text-white mt-2 foverflow-hidden break-words">
                       {{ Str::limit($product->description, 60) }}
                   </p>

@@ -33,7 +33,7 @@ class ProductController extends Controller
 
         $products = DB::table('products')
             ->orderBy($sort, $direction)
-            ->paginate(4);
+            ->paginate(6);
 
         return view('index', [
             'products' => $products,
@@ -124,6 +124,7 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric|max:10000',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'strength' => 'required|integer|min:1|max:6',
             'categories' => 'required|array',
             'categories.*' => 'exists:categories,id',
         ]);
@@ -131,6 +132,7 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
+        $product->strength = $request->input('strength');
 
         if ($request->hasFile('image')) {
             if ($product->image) {

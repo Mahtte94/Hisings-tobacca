@@ -51,7 +51,7 @@ The database has the tables **users**, **products**, **categories** and **catego
 |  1 | White   | 2025-01-01 12:12:12 | 2025-01-01 12:12:12 |
 |  2 | Black   | 2025-01-01 12:12:12 | 2025-01-01 12:12:12 |
 
-### Categoriy_product
+### Category_product
 | id | product_id | category_id | created_at | updated_at |
 | -- | ---------- | ----------- | ---------- | ---------- |
 |  1 |          1 |           4 | NULL       | NULL       |

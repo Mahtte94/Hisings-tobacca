@@ -9,7 +9,7 @@
       <img 
           src="{{ asset('storage/' . $products->image) }}" 
           alt="{{ $products->name }}" 
-          class="w-48 mx-auto max-w-md  rounded-lg shadow-md"
+          class="w-48 mx-auto max-w-md rounded-lg shadow-md mb-2"
       >
 
        <!-- Product Strength -->
@@ -27,7 +27,7 @@
       <p class="mt-2 text-white overflow-hidden break-words">{{ $products->description }}</p>
 
       <!-- Product Price -->
-      <p class="mt-2 text-lg font-semibold text-blue-500">${{ $products->price }}</p>
+      <p class="mt-2 text-lg font-semibold text-blue-200">${{ $products->price }}</p>
 
       <!-- Action Buttons -->
       <div class="mt-6 flex space-x-4">

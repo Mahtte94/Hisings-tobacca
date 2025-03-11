@@ -38,7 +38,7 @@
                 @foreach($products as $product)
                 <!-- Wrap the entire product card in a link -->
                 <a href="{{ route('show', $product->id) }}"
-                    class="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col h-80 transition transform hover:bg-gray-600 hover:scale-105 hover:shadow-xl">
+                    class="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col h-80 transition transform hover:scale-105 hover:shadow-xl">
                     <!-- Product Name -->
                     <h2 class="mx-auto text-xl font-semibold text-white hover:text-blue-500">
                         {{ $product->name }}
@@ -48,7 +48,7 @@
                     <img
                         src="{{ asset('storage/' . $product->image) }}"
                         alt="{{ $product->name }}"
-                        class="w-full h-32 object-contain rounded-lg mt-2">
+                        class="w-full h-32 object-contain rounded-lg mt-2 mb-2">
 
                     <!-- Product Strength -->
 
@@ -65,12 +65,12 @@
                         {{ Str::limit($product->description, 60) }}
                     </p>
 
-                    @if(strlen($product->description) > 100)
-                    <p class="text-blue-500 font-semibold">See More</p>
+                    @if(strlen($product->description) > 60)
+                    <p class="text-blue-200 font-semibold">See More</p>
                     @endif
 
                     <!-- Price -->
-                    <p class="text-blue-500 font-bold">${{ $product->price }}</p>
+                    <p class="text-blue-200 font-bold">${{ $product->price }}</p>
 
                 </a> <!-- End of the link wrapping the product card -->
                 @endforeach
@@ -120,13 +120,13 @@
                     strengthHtml += '</div>';
                         output += `
                             <a href="/products/${product.id}" 
-                                class="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col h-80 transition transform hover:bg-gray-600 hover:scale-105 hover:shadow-xl">
+                                class="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col h-80 transition transform hover:scale-105 hover:shadow-xl">
                                 <h2 class="mx-auto text-xl font-semibold text-white">
                                     ${product.name}
                                 </h2>
                                 <img 
                                     src="/storage/${product.image}" 
-                                    class="w-full h-32 object-contain rounded-lg mt-2"
+                                    class="w-full h-32 object-contain rounded-lg mt-2 mb-2"
                                 >
 
                                  ${strengthHtml}

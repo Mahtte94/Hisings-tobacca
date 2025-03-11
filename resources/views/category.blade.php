@@ -10,7 +10,7 @@
       <div class="grid gap-6 mt-4 sm:grid-cols-2 md:grid-cols-3">
           @forelse($products as $product)
               <a href="{{ route('show', $product->id) }}" 
-                  class="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col max-h-80 transition transform hover:bg-gray-600 hover:scale-105 hover:shadow-xl">
+                  class="bg-gray-700 rounded-lg shadow-md p-4 flex flex-col max-h-80 transition transform hover:scale-105 hover:shadow-xl">
                   <h2 class="mx-auto text-xl font-semibold text-white hover:text-blue-500">
                       {{ $product->name }}
                   </h2>
@@ -18,7 +18,7 @@
                   <img 
                       src="{{ asset('storage/' . $product->image) }}" 
                       alt="{{ $product->name }}" 
-                      class="w-full h-32 object-contain rounded-lg mt-2"
+                      class="w-full h-32 object-contain rounded-lg mt-2 mb-2"
                   >
 
                    <!-- Product Strength -->
@@ -31,15 +31,15 @@
                     @endfor
                 </div>
 
-                  <p class="text-white mt-2 foverflow-hidden break-words">
+                  <p class="text-white mt-2 overflow-hidden break-words">
                       {{ Str::limit($product->description, 60) }}
                   </p>
 
                   @if(strlen($product->description) > 100)
-                  <p class="text-blue-500 font-semibold">See More</p>
+                  <p class="text-blue-200 font-semibold">See More</p>
                   @endif
 
-                  <p class="text-blue-500 font-bold">${{ $product->price }}</p>
+                  <p class="text-blue-200 font-bold">${{ $product->price }}</p>
               </a>
           @empty
               <p class="text-white col-span-3 text-center py-8">No products found in this category.</p>
@@ -49,3 +49,4 @@
       {{ $products->links('pagination.custom') }}
   </div>
 </x-app-layout>
+

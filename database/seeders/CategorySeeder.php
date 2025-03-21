@@ -14,7 +14,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        // Create predefined categories
+
         $categories = [
             'White',
             'Black',
@@ -26,7 +26,6 @@ class CategorySeeder extends Seeder
             Category::create(['name' => $categoryName]);
         }
 
-        // Create additional random categories
         Category::factory()->count(5)->create();
     }
 }

@@ -25,17 +25,15 @@ class ProductFactory extends Factory
 
     $imagePath = public_path('storage/test_resources/');
 
-    // Make sure the directory exists
+    
     if (!file_exists($imagePath)) {
-      // If it doesn't exist, return null for the image
       $randomImage = null;
     } else {
       $files = glob($imagePath . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
-      // Pick a random image
       $randomImage = count($files) > 0 ? basename($files[array_rand($files)]) : null;
     }
 
-    // Pick a random image
+   
     $randomImage = count($files) > 0 ? basename($files[array_rand($files)]) : null;
 
     return [

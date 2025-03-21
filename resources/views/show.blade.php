@@ -27,7 +27,7 @@
       <p class="mt-2 text-white overflow-hidden break-words">{{ $products->description }}</p>
 
       <!-- Product Price -->
-      <p class="mt-2 text-lg font-semibold text-blue-200">${{ $products->price }}</p>
+      <p class="mt-2 text-lg font-semibold text-blue-200">{{ $products->price }}:-</p>
 
       <!-- Action Buttons -->
       <div class="mt-6 flex space-x-4">

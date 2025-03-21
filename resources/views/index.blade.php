@@ -70,7 +70,7 @@
                     @endif
 
                     <!-- Price -->
-                    <p class="text-blue-200 font-bold">${{ $product->price }}</p>
+                    <p class="text-blue-200 font-bold">{{ $product->price }}:-</p>
 
                 </a> <!-- End of the link wrapping the product card -->
                 @endforeach
@@ -133,7 +133,7 @@
                                
                                 <p class="text-white mt-2 overflow-hidden break-words">${product.description.length > 100 ? product.description.substring(0, 60) + '...' : product.description}</p>
                                 ${product.description.length > 100 ? '<p class="text-blue-200 font-semibold">See More</p>' : ''}
-                                <p class="text-blue-200 font-bold">$${product.price}</p>
+                                <p class="text-blue-200 font-bold">${product.price}:-</p>
                             </a>
                             
                         `;

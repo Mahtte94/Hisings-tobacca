@@ -39,7 +39,7 @@
                   <p class="text-blue-200 font-semibold">See More</p>
                   @endif
 
-                  <p class="text-blue-200 font-bold">${{ $product->price }}</p>
+                  <p class="text-blue-200 font-bold">{{ $product->price }}:-</p>
               </a>
           @empty
               <p class="text-white col-span-3 text-center py-8">No products found in this category.</p>
